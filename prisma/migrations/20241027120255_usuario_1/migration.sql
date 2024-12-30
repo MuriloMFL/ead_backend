@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "franquia" ADD COLUMN     "data_criacao" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN     "data_inativo" TIMESTAMP(3),
+ADD COLUMN     "status" BOOLEAN NOT NULL DEFAULT true;

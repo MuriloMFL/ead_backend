@@ -1,0 +1,478 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id_usuario    Int       @id @default(autoincrement())
+  nome_usuario  String
+  email         String    @unique
+  login         String    @unique
+  senha         String
+  id_franquia   Int
+  tipo_usuario  String
+  data_criacao  DateTime  @default(now())
+  data_inativo  DateTime?
+  status        Boolean   @default(true)
+
+  franquia      Franquia  @relation(fields: [id_franquia], references: [id_franquia])
+  
+  Mv_Release      Mv_Release[]
+  mv_faq          Mv_Faq[]
+  mv_aula         Mv_Aula[]
+  mv_questao      Mv_Questao[]
+  mv_prova        Mv_Prova[]
+  mv_video        Mv_Video[]
+  planejamento    Planejamento[]
+  release         Release[]
+  @@map("usuario")
+}
+
+
+model Franquia {
+  id_franquia   Int        @id @default(autoincrement())
+  nome          String
+  responsavel   String
+  telefone      String?
+  data_criacao  DateTime   @default(now())
+  data_inativo  DateTime?  
+  status        Boolean    @default(true)
+
+  usuarios      Usuario[]
+  mv_faq        Mv_Faq[]
+  mv_aula       Mv_Aula[]
+  mv_questao    Mv_Questao[]
+  mv_prova      Mv_Prova[]
+  mv_video      Mv_Video[]
+  @@map("franquia")
+}
+
+
+model Sistema {
+  id_sistema    Int        @id @default(autoincrement())
+  nome_sistema  String
+  data_criacao  DateTime  @default(now())
+  data_inativo  DateTime?
+  status        Boolean @default(true)
+
+  modulo          Modulo[]
+  submodulo       SubModulo[]
+  aula            Aula[]
+  video           Video[]
+  faq             Faq[]
+  questao         Questao[]
+  prova           Prova[]
+  mv_faq          Mv_Faq[]
+  mv_aula         Mv_Aula[]
+  mv_questao      Mv_Questao[]
+  mv_prova        Mv_Prova[]
+  mv_video        Mv_Video[]
+  planejamento    Planejamento[]
+  Release_item    Release_item[]
+  @@map("sistema")
+}
+
+model Modulo {
+  id_modulo     Int        @id @default(autoincrement())
+  id_sistema    Int
+  nome_modulo   String
+  data_criacao  DateTime  @default(now())
+  data_inativo  DateTime?
+  status        Boolean @default(true)
+
+  sistema         Sistema  @relation(fields: [id_sistema ], references: [id_sistema ])
+
+  submodulo       SubModulo[]
+  aula            Aula[]
+  video           Video[]  
+  faq             Faq[]
+  questao         Questao[]
+  prova           Prova[]
+  mv_faq          Mv_Faq[]
+  mv_aula         Mv_Aula[]
+  mv_questao      Mv_Questao[]
+  mv_prova        Mv_Prova[]
+  mv_video        Mv_Video[]
+  planejamento    Planejamento[]
+  Release_item    Release_item[]
+
+  @@map("aba")
+}
+
+
+model SubModulo {
+  id_submodulo     Int @id @default(autoincrement())
+  id_sistema     Int
+  id_modulo      Int
+  nome_submodulo String
+  data_criacao   DateTime  @default(now())
+  data_inativo   DateTime?
+  status         Boolean @default(true)
+
+  sistema        Sistema @relation(fields: [id_sistema], references: [id_sistema])
+  modulo         Modulo  @relation(fields: [id_modulo],  references: [id_modulo])
+
+  aula            Aula[]
+  video           Video[]
+  faq             Faq[]
+  questao         Questao[]
+  prova           Prova[]
+  mv_faq          Mv_Faq[]
+  mv_aula         Mv_Aula[]
+  mv_questao      Mv_Questao[]
+  mv_prova        Mv_Prova[]
+  mv_video        Mv_Video[]
+  planejamento    Planejamento[]
+  Release_item    Release_item[]
+  @@map("modulo")
+}
+
+
+model Aula {
+  id_aula       Int @id @default(autoincrement())
+  id_sistema    Int
+  id_submodulo  Int
+  id_modulo     Int
+  nome_aula     String
+  cliente       Boolean
+  data_criacao  DateTime  @default(now())
+  data_inativo  DateTime?
+  status        Boolean @default(true)
+
+  sistema       Sistema   @relation(fields: [id_sistema],   references: [id_sistema])
+  modulo        Modulo    @relation(fields: [id_modulo],    references: [id_modulo])
+  submodulo     SubModulo @relation(fields: [id_submodulo], references: [id_submodulo])
+
+  video         Video[]
+  faq           Faq[]
+  questao       Questao[]
+  mv_faq        Mv_Faq[]
+  mv_aula       Mv_Aula[]
+  mv_questao    Mv_Questao[]
+  mv_video      Mv_Video[]
+
+
+  @@map("aula") 
+}
+
+
+model Video {
+  id_video      Int @id @default(autoincrement())
+  id_sistema    Int
+  id_submodulo  Int
+  id_modulo     Int
+  id_aula       Int? 
+  nome_video    String
+  link          String
+  observacao    String?
+  order         Int?
+  
+  data_criacao  DateTime      @default(now())
+  data_inativo  DateTime?
+  status        Boolean       @default(true)
+
+  sistema       Sistema       @relation(fields: [id_sistema],   references: [id_sistema])
+  modulo        Modulo        @relation(fields: [id_modulo],    references: [id_modulo])
+  submodulo     SubModulo     @relation(fields: [id_submodulo], references: [id_submodulo]) 
+  aula          Aula?         @relation(fields: [id_aula],      references: [id_aula])
+
+  mv_video      Mv_Video[]
+
+  @@map("video")
+}
+
+
+model Faq {
+  id_faq        Int @id @default(autoincrement())
+  id_sistema    Int
+  id_submodulo  Int
+  id_modulo     Int
+  id_aula       Int? 
+  nome_faq      String
+  link          String
+  observacao    String?
+  order         Int?
+  
+  data_criacao  DateTime  @default(now())
+  data_inativo  DateTime?
+  status        Boolean @default(true)
+
+  sistema       Sistema   @relation(fields: [id_sistema],   references: [id_sistema])
+  modulo        Modulo    @relation(fields: [id_modulo],    references: [id_modulo])
+  submodulo     SubModulo @relation(fields: [id_submodulo], references: [id_submodulo]) 
+  aula          Aula?      @relation(fields: [id_aula],      references: [id_aula])
+
+  mv_faq        Mv_Faq[]
+
+  @@map("faq")
+}
+
+
+model Questao {
+  id_questao    Int @id @default(autoincrement())
+  id_sistema    Int
+  id_submodulo  Int
+  id_modulo     Int
+  id_aula       Int?
+  id_prova      Int?
+  questao       String
+  alternativa_A String
+  alternativa_B String
+  alternativa_C String?
+  alternativa_D String?
+  correta       String
+  observacao    String
+  order         Int?
+  
+  data_criacao  DateTime  @default(now())
+  data_inativo  DateTime?
+  status        Boolean @default(true)
+
+  sistema       Sistema   @relation(fields: [id_sistema],   references: [id_sistema])
+  modulo        Modulo    @relation(fields: [id_modulo],    references: [id_modulo])
+  submodulo     SubModulo @relation(fields: [id_submodulo], references: [id_submodulo]) 
+  aula          Aula?     @relation(fields: [id_aula],      references: [id_aula])
+  prova         Prova?    @relation(fields: [id_prova],     references: [id_prova])
+
+  mv_questao       Mv_Questao[]
+  @@map("questao")
+}
+
+
+model Prova {
+  id_prova      Int @id @default(autoincrement())
+  id_sistema    Int
+  id_submodulo  Int?
+  id_modulo     Int
+  nome_prova    String
+  cliente       Boolean
+  
+  data_criacao  DateTime  @default(now())
+  data_inativo  DateTime?
+  status        Boolean @default(true)
+
+  sistema       Sistema    @relation(fields: [id_sistema],   references: [id_sistema])
+  modulo        Modulo     @relation(fields: [id_modulo],    references: [id_modulo])
+  submodulo     SubModulo? @relation(fields: [id_submodulo], references: [id_submodulo])
+
+  questao       Questao[]
+  mv_questao    Mv_Questao[]
+  mv_prova      Mv_Prova[]
+
+  @@map("prova") 
+}
+
+
+model Mv_Aula {
+  id_mv_aula    Int @id @default(autoincrement())
+  id_sistema    Int
+  id_submodulo  Int
+  id_modulo     Int
+  id_aula       Int 
+  id_usuario    Int 
+  id_franquia   Int 
+
+  data_visto    DateTime  @default(now())
+  data_inativo  DateTime?
+  status        Boolean @default(true)
+ 
+  sistema       Sistema   @relation(fields: [id_sistema],   references: [id_sistema])
+  modulo        Modulo    @relation(fields: [id_modulo],    references: [id_modulo])
+  submodulo     SubModulo @relation(fields: [id_submodulo], references: [id_submodulo]) 
+  aula          Aula      @relation(fields: [id_aula],      references: [id_aula])
+  usuario       Usuario   @relation(fields: [id_usuario],   references: [id_usuario])
+  franquia      Franquia  @relation(fields: [id_franquia],  references: [id_franquia])
+  @@map("mv_aula")
+}
+
+
+model Mv_Faq {
+  id_mv_faq     Int @id @default(autoincrement())
+  id_faq        Int
+  id_sistema    Int
+  id_submodulo  Int
+  id_modulo     Int
+  id_aula       Int
+  id_usuario    Int
+  id_franquia   Int 
+  
+  data_visto    DateTime  @default(now())
+  data_inativo  DateTime?
+  status        Boolean @default(true)
+
+  sistema       Sistema   @relation(fields: [id_sistema],   references: [id_sistema])
+  modulo        Modulo    @relation(fields: [id_modulo],    references: [id_modulo])
+  submodulo     SubModulo @relation(fields: [id_submodulo], references: [id_submodulo])
+  aula          Aula      @relation(fields: [id_aula],      references: [id_aula])
+  faq           Faq       @relation(fields: [id_faq],       references: [id_faq])
+  usuario       Usuario   @relation(fields: [id_usuario],   references: [id_usuario])
+  franquia      Franquia  @relation(fields: [id_franquia],  references: [id_franquia])  
+  @@map("mv_faq")
+}
+
+
+model Mv_Video {
+  id_mv_video    Int @id @default(autoincrement())
+  id_sistema    Int
+  id_submodulo  Int
+  id_modulo     Int
+  id_aula       Int
+  id_usuario    Int 
+  id_franquia   Int
+  id_video      Int
+
+  data_visto    DateTime  @default(now())
+  data_inativo  DateTime?
+  status        Boolean   @default(true)
+
+  sistema       Sistema   @relation(fields: [id_sistema],   references: [id_sistema])
+  modulo        Modulo    @relation(fields: [id_modulo],    references: [id_modulo])
+  submodulo     SubModulo @relation(fields: [id_submodulo], references: [id_submodulo]) 
+  aula          Aula      @relation(fields: [id_aula],      references: [id_aula])
+  usuario       Usuario   @relation(fields: [id_usuario],   references: [id_usuario])
+  video         Video     @relation(fields: [id_video],     references: [id_video])
+  franquia      Franquia  @relation(fields: [id_franquia],  references: [id_franquia])
+  
+  @@map("mv_video")
+}
+
+
+model Mv_Prova {
+  id_mv_prova    Int @id @default(autoincrement())
+  id_sistema    Int
+  id_submodulo  Int
+  id_modulo     Int
+  id_usuario    Int
+  id_franquia   Int
+  id_prova      Int 
+  nota          Float
+
+  data_visto    DateTime  @default(now())
+  data_inativo  DateTime?
+  status        Boolean @default(true)
+
+  sistema       Sistema   @relation(fields: [id_sistema],   references: [id_sistema])
+  modulo        Modulo    @relation(fields: [id_modulo],    references: [id_modulo])
+  submodulo     SubModulo @relation(fields: [id_submodulo], references: [id_submodulo])
+  usuario       Usuario   @relation(fields: [id_usuario],   references: [id_usuario])
+  prova         Prova     @relation(fields: [id_prova],     references: [id_prova])
+  franquia      Franquia  @relation(fields: [id_franquia],  references: [id_franquia]) 
+  @@map("mv_prova")
+}
+
+
+model Mv_Questao {
+  id_mv_questao Int @id @default(autoincrement())
+  id_sistema    Int
+  id_submodulo  Int
+  id_modulo     Int
+  id_aula       Int?
+  id_prova      Int?
+  id_usuario    Int
+  id_franquia   Int
+  id_questao    Int 
+  certo_errado  String
+  
+  data_visto    DateTime   @default(now())
+  data_inativo  DateTime?
+  status        Boolean    @default(true)
+
+  sistema       Sistema    @relation(fields: [id_sistema],   references: [id_sistema])
+  modulo        Modulo     @relation(fields: [id_modulo],    references: [id_modulo])
+  submodulo     SubModulo  @relation(fields: [id_submodulo], references: [id_submodulo]) 
+  aula          Aula?       @relation(fields: [id_aula],      references: [id_aula])
+  usuario       Usuario    @relation(fields: [id_usuario],   references: [id_usuario])
+  questao       Questao    @relation(fields: [id_questao],   references: [id_questao])
+  prova         Prova?      @relation(fields: [id_prova],     references: [id_prova])
+  franquia      Franquia   @relation(fields: [id_franquia],  references: [id_franquia])
+
+  @@map("mv_questao")
+}
+
+model Planejamento {
+  id_planejamento   Int @id @default(autoincrement())
+  nome_planejamento String
+  id_sistema        Int
+  id_modulo         Int
+  id_submodulo      Int
+  id_usuario        Int
+  modulo_novo       Boolean?
+  previsao_inicio   DateTime?
+  previsao_fim      DateTime?
+  etapa_elicitacao  Boolean?
+  etapa_roteiro     Boolean?
+  etapa_video       Boolean?
+  etapa_validacao   Boolean?
+  etapa_finalizado  Boolean?
+  proposta          String?
+  roteiro           String?
+  impedimentos      String?
+  observacoes       String?
+
+  data_criacao      DateTime @default(now())
+  data_inativo      DateTime?
+  status            Boolean @default(true)
+
+  sistema       Sistema    @relation(fields: [id_sistema],   references: [id_sistema])
+  modulo        Modulo     @relation(fields: [id_modulo],    references: [id_modulo])
+  submodulo     SubModulo  @relation(fields: [id_submodulo], references: [id_submodulo]) 
+  usuario       Usuario    @relation(fields: [id_usuario],   references: [id_usuario])
+
+  @@map("planejamento")
+}
+
+model Release {
+  id_release         Int @id @default(autoincrement())
+  numero_release     Int
+  versao_gestores    String
+  versao_sincdata    String
+  versao_gestorpdv   String
+  versao_balcao      String
+  id_usuario         Int
+  data_inclusao      DateTime @default(now())
+  data_inativo       DateTime?
+  status             Boolean @default(true)
+  finalizado         Boolean @default(false)
+
+  Mv_Release      Mv_Release[]
+  Release_item    Release_item[]
+  usuario         Usuario    @relation(fields: [id_usuario],   references: [id_usuario])
+  @@map("release")
+}
+
+model Release_item {
+  id_item_release   Int @id @default(autoincrement())
+  nome_release      String
+  numero_release    Int
+  id_release        Int
+  id_sistema        Int
+  id_modulo         Int
+  id_submodulo      Int
+  correcao          Boolean?
+  alteracao         Boolean?
+  imagem            String?
+  observacao        String?
+  status            Boolean @default(true)
+
+  release       Release            @relation(fields: [id_release],   references: [id_release])
+  sistema       Sistema            @relation(fields: [id_sistema],   references: [id_sistema])
+  modulo        Modulo             @relation(fields: [id_modulo],    references: [id_modulo])
+  submodulo     SubModulo          @relation(fields: [id_submodulo], references: [id_submodulo]) 
+
+  @@map("release_item")
+}
+
+model Mv_Release {
+  id_mv_release      Int @id @default(autoincrement())
+  id_release         Int
+  id_usuario         Int
+  data_visto         DateTime @default(now())
+
+  release         Release    @relation(fields: [id_release], references: [id_release])
+  usuario         Usuario    @relation(fields: [id_usuario],   references: [id_usuario])
+  @@map("mv_release")
+}

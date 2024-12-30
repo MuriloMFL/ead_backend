@@ -1,0 +1,26 @@
+import prismaClient from "../../prisma";
+
+class ServicoCriarVideo {
+    async executar ({id_sistema, id_modulo, id_submodulo, id_aula, nome_video, link, observacao, order}){
+        try {
+            const video = await prismaClient.video.create({
+                data:{
+                    id_sistema:   id_sistema, 
+                    id_modulo:    id_modulo, 
+                    id_submodulo: id_submodulo, 
+                    id_aula:      id_aula, 
+                    nome_video:   nome_video, 
+                    link:         link, 
+                    observacao:   observacao, 
+                    order:        order
+                }
+            })
+            return video            
+        } catch (error) {
+            throw new Error('Erro no serviço de criar Video')
+        }
+
+    }
+}
+
+export {ServicoCriarVideo}
