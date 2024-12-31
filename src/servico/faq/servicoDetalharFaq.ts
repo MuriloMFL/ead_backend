@@ -1,11 +1,11 @@
 import prismaClient from "../../prisma";
 
 class ServicoDetalharFaq {
-    async executar(id_faq: number){
+    async executar(id_faq){
         try {
             const faq = await prismaClient.faq.findFirst({
                 where: {
-                    id_faq: id_faq
+                    id_faq: Number(id_faq)
                 }
             })
             return faq            

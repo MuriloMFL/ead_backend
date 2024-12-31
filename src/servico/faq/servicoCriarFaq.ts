@@ -5,10 +5,10 @@ class ServicoCriarFaq {
         try {
             const faq = await prismaClient.faq.create({
                 data:{
-                    id_sistema:   id_sistema, 
-                    id_modulo:    id_modulo, 
-                    id_submodulo: id_submodulo, 
-                    id_aula:      id_aula, 
+                    id_sistema:   Number(id_sistema), 
+                    id_modulo:    Number(id_modulo), 
+                    id_submodulo: Number(id_submodulo), 
+                    id_aula:      Number(id_aula), 
                     nome_faq:     nome_faq, 
                     link:         link, 
                     observacao:   observacao, 
