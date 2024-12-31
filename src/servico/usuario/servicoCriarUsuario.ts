@@ -35,7 +35,7 @@ class ServicoCriarUsuario {
                 email: email,
                 login: login,
                 senha: passwordHash,
-                id_franquia: id_franquia,
+                id_franquia: Number(id_franquia),
                 tipo_usuario: tipo_usuario,
                 status: status
             },

@@ -12,11 +12,13 @@ class ServicoCriarFaq {
                     nome_faq:     nome_faq, 
                     link:         link, 
                     observacao:   observacao, 
-                    order:        order
+                    order:        Number(order)
                 }
             })
+            
             return faq
         } catch (error) {
+            console.error(error)
             throw new Error ('Erro no servico de criar faq')
         }
     }

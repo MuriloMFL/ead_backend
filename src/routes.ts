@@ -85,12 +85,14 @@ import { ControleCriarMvVideo } from './controle/video_mv/controleCriarMvVideo';
 import { ControleCriarMvFaq } from './controle/faq_mv/controleCriarMvFaq';
 import { ControleCriarMvQuestao } from './controle/questao_mv/controleCriarMvQuestao';
 import { ControleCriarMvProva } from './controle/prova_mv/controleCriarMvProva';
+import { ControleDetalharCadUsuario } from './controle/usuario/controleDetalharCadUsuario';
 
 const router = Router();
 
 router.post('/usuario/criar', new ControleCriarUsuario().handle)
 router.post('/logarusuario', new ControleLogarUsuario().handle)
-router.get('/detalharusuario/', estaAutentidado, new ControleDetalharUsuario().handle)
+router.get('/detalharusuario', estaAutentidado, new ControleDetalharUsuario().handle)
+router.get('/detalharcadusuario', estaAutentidado, new ControleDetalharCadUsuario().handle)
 router.get('/listarusuarioporfranquia', estaAutentidado, new ControleListarUsuarioPorFranquia().handle)
 router.put('/trocarstatususuario', estaAutentidado, new ControleInativarUsuario().handle)
 

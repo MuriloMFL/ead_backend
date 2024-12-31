@@ -1,7 +1,7 @@
 import prismaClient from "../../prisma";
 
-class ServicoDetalharUsuario {
-    async executar(id_usuario: number){
+class ServicoDetalharCadUsuario {
+    async executar({id_usuario}){
         const usuario = await prismaClient.usuario.findFirst({
             where:{
                id_usuario: Number(id_usuario)
@@ -20,4 +20,4 @@ class ServicoDetalharUsuario {
     }
 }
 
-export {ServicoDetalharUsuario}
+export {ServicoDetalharCadUsuario}

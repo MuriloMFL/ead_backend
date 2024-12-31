@@ -5,14 +5,14 @@ class ServicoCriarVideo {
         try {
             const video = await prismaClient.video.create({
                 data:{
-                    id_sistema:   id_sistema, 
-                    id_modulo:    id_modulo, 
-                    id_submodulo: id_submodulo, 
-                    id_aula:      id_aula, 
+                    id_sistema:   Number(id_sistema), 
+                    id_modulo:    Number(id_modulo), 
+                    id_submodulo: Number(id_submodulo), 
+                    id_aula:      Number(id_aula), 
                     nome_video:   nome_video, 
                     link:         link, 
                     observacao:   observacao, 
-                    order:        order
+                    order:        Number(order)
                 }
             })
             return video            

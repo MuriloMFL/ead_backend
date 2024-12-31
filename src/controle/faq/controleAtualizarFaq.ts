@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 class ControleAtualizarFaq {
     async handle(req: Request, res: Response){
         const {id_faq, id_sistema, id_modulo, id_submodulo, id_aula, nome_faq, link, observacao, order} = req.body;
-        console.log(id_faq, id_sistema, id_modulo, id_submodulo, id_aula, nome_faq, link, observacao, order)
+        
         const servicocriarfaq = new ServicoAtualizarFaq();
 
         const faq = await servicocriarfaq.executar({

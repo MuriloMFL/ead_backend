@@ -19,7 +19,10 @@ class ControleAtualizarVideo {
 
         const servicoatualizarvideo = new ServicoAtualizarVideo();
 
-        const video = await servicoatualizarvideo.executar({id_video, id_sistema, id_modulo, id_submodulo, id_aula, nome_video, link, observacao, order});
+        const video = await servicoatualizarvideo.executar(
+            {id_video, id_sistema, id_modulo, id_submodulo, id_aula, nome_video, link, observacao, order
+                
+            });
 
         return res.json(video)
     }

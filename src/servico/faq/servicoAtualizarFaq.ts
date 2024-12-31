@@ -2,21 +2,21 @@ import prismaClient from "../../prisma";
 
 class ServicoAtualizarFaq {
     async executar({id_faq, id_sistema, id_modulo, id_submodulo, id_aula, nome_faq, link, observacao, order}){
-        console.log(id_faq, id_sistema, id_modulo, id_submodulo, id_aula, nome_faq, link, observacao, order)
+        
         try {
             const faq = await prismaClient.faq.update({
                 where: {
                     id_faq: Number(id_faq)
                 },
                 data:{
-                    id_sistema:   id_sistema, 
-                    id_modulo:    id_modulo, 
-                    id_submodulo: id_submodulo, 
-                    id_aula:      id_aula, 
+                    id_sistema:   Number(id_sistema), 
+                    id_modulo:    Number(id_modulo), 
+                    id_submodulo: Number(id_submodulo), 
+                    id_aula:      Number(id_aula), 
                     nome_faq:     nome_faq, 
                     link:         link, 
                     observacao:   observacao, 
-                    order:        order
+                    order:        Number(order)
                 }
             })
             return faq

@@ -8,7 +8,7 @@ class ControleDetalharUsuario{
 
         const servicoDetalharUsuario = new ServicoDetalharUsuario();
 
-        const usuario = await servicoDetalharUsuario.executar(id_usuario);
+        const usuario = await servicoDetalharUsuario.executar(Number(id_usuario));
 
         return res.json(usuario);
     }
