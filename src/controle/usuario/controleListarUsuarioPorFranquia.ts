@@ -7,11 +7,10 @@ class ControleListarUsuarioPorFranquia {
         const {id_franquia, status, nome_usuario} = req.query ;
 
         const filtros = {
-            id_franquia  : id_franquia, 
+            id_franquia: Number(id_franquia) === 1 ? undefined : Number(id_franquia), 
             status       : status ==='true' ? true : status==='false' ? false : undefined, 
             nome_usuario : nome_usuario 
         }
-
         
         const servicoListarUsuarioPorFranquia = new ServicoListarUsuarioPorFranquia();
 

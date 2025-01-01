@@ -5,8 +5,6 @@ class ControleDetalharCadUsuario{
     async handle(req: Request, res: Response){
 
         const {id_usuario} = req.params
-
-        console.log(id_usuario)
         
         const servicoDetalharUsuario = new ServicoDetalharCadUsuario();
 
