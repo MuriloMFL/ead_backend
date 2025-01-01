@@ -4,7 +4,7 @@ class ServicoDetalharQuestao {
     async executar(id_questao){
         const questao = await prismaClient.questao.findFirst({
             where : {
-                id_questao: id_questao
+                id_questao: Number(id_questao)
             },
         })
         return questao

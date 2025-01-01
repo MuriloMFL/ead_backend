@@ -1,21 +1,6 @@
 import { ServicoCriarQuestoes } from "../../servico/questao/servicoCriarQuestao";
 import { Request, Response } from "express";
 
-interface questao {
-    id_sistema    :number
-    id_submodulo  :number
-    id_modulo     :number
-    id_aula       :number
-    questao       :string
-    alternativa_A :string
-    alternativa_B :string
-    alternativa_C :string
-    alternativa_D :string
-    correta       :string
-    observacao    :string
-    order         :number
-}
-
 class ControleCriarQuestoes {
     async handle(req: Request, res: Response){
         const {  id_sistema,    

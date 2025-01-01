@@ -14,7 +14,6 @@ class ServicoListaSubModulo {
             id_modulo:    filtros.id_modulo,
             id_submodulo: filtros.id_submodulo
         };
-            console.log(filtros.id_modulo)
         try {
             const Buscasubmodulo = await prismaClient.subModulo.findMany({
                 where: filtro,

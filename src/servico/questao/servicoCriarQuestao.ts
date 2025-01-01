@@ -17,10 +17,10 @@ class ServicoCriarQuestoes {
     }){
         const questoes = await prismaClient.questao.create({
             data: {
-                id_sistema,    
-                id_submodulo,  
-                id_modulo,     
-                id_aula,       
+                id_sistema     : Number(id_sistema),    
+                id_submodulo   : Number(id_submodulo),  
+                id_modulo      : Number(id_modulo),     
+                id_aula        : Number(id_aula),      
                 questao,       
                 alternativa_A, 
                 alternativa_B, 
@@ -28,7 +28,7 @@ class ServicoCriarQuestoes {
                 alternativa_D, 
                 correta,       
                 observacao,    
-                order
+                order           : Number(order)
             }
         })
 
