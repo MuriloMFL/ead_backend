@@ -3,6 +3,7 @@ import prismaClient from "../../prisma";
 interface ListarFranquiaParams{
     status?:      boolean;
     nome?:        string;
+    id_franquia?: number;
 }
 class ServicoListarFranquia {
     async executar(filtros: ListarFranquiaParams) {
@@ -10,6 +11,7 @@ class ServicoListarFranquia {
             where: {
                 status: filtros.status,
                 nome: filtros.nome ? { contains: filtros.nome, mode: 'insensitive' } : undefined,
+                id_franquia: filtros.id_franquia
             },
             select: {
                 id_franquia: true,
