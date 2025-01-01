@@ -20,6 +20,7 @@ class ServicoCriarPlanejamento {
         impedimentos,
         observacoes,
     }){
+
         try {
             const planejamento = await prismaClient.planejamento.create({
                 data: {
