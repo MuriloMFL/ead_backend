@@ -10,6 +10,8 @@ class ControleCriarPlanejamento {
             id_submodulo,
             id_usuario,
             modulo_novo,
+            previsao_inicio,
+            previsao_fim,
             etapa_elicitacao,
             etapa_roteiro,
             etapa_video,
@@ -22,23 +24,6 @@ class ControleCriarPlanejamento {
 
         const servicoCriarPlanejamento = new ServicoCriarPlanejamento();
 
-        console.log(        
-            nome_planejamento,
-            id_sistema,
-            id_modulo,
-            id_submodulo,
-            id_usuario,
-            modulo_novo,
-            etapa_elicitacao,
-            etapa_roteiro,
-            etapa_video,
-            etapa_validacao,
-            etapa_finalizado,
-            proposta,
-            roteiro,
-            impedimentos,
-            observacoes)
-
         const planejamento = await servicoCriarPlanejamento.executar({
             nome_planejamento,
             id_sistema,
@@ -46,6 +31,8 @@ class ControleCriarPlanejamento {
             id_submodulo,
             id_usuario,
             modulo_novo,
+            previsao_inicio,
+            previsao_fim,
             etapa_elicitacao,
             etapa_roteiro,
             etapa_video,
