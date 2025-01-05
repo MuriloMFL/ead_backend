@@ -20,6 +20,7 @@ class ServicoCriarReleaseItem {
             })
             return releaseItem      
         } catch (error) {
+            console.error(error)
             throw new Error('Erro no serviço de Criar ReleaseItem')
         }
 
