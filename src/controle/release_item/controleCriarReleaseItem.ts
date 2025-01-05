@@ -10,7 +10,16 @@ class ControleCriarReleaseItem {
         const servicoCriarReleaseItem = new ServicoCriarReleaseItem();
 
         const releaseItem = await servicoCriarReleaseItem.executar({
-            nome_release, numero_release, id_release, id_sistema, id_modulo, id_submodulo,correcao, alteracao, imagem, observacao
+            nome_release, 
+            numero_release, 
+            id_release, 
+            id_sistema, 
+            id_modulo, 
+            id_submodulo,
+            correcao, 
+            alteracao, 
+            imagem, 
+            observacao
         })
 
         return res.json(releaseItem)

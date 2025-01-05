@@ -3,7 +3,7 @@ import { Response, Request } from "express";
 
 class ControleCriarRelease {
     async handle(req: Request, res: Response){
-        const {  numero_release, versao_gestores, versao_sincdata, versao_gestorpdv, versao_balcao, id_usuario} = req.body
+        const {numero_release, versao_gestores, versao_sincdata, versao_gestorpdv, versao_balcao, id_usuario, finalizado} = req.body
 
         const servicocriarrelease = new ServicoCriarRelease();
 
@@ -13,8 +13,8 @@ class ControleCriarRelease {
             versao_sincdata, 
             versao_gestorpdv, 
             versao_balcao,
-            id_usuario
-
+            id_usuario,
+            finalizado
             })
 
         return res.json(release)

@@ -10,5 +10,4 @@ class ServicoDetalharRelease {
         return release
     }
 }
-
 export {ServicoDetalharRelease}

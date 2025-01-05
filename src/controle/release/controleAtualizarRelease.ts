@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 class ControleAtualizarRelease {
     async handle(req: Request, res: Response){
         const {
-            id_release, numero_release, versao_gestores, versao_sincdata, versao_gestorpdv, versao_balcao
+            id_release, numero_release, versao_gestores, versao_sincdata, versao_gestorpdv, versao_balcao, finalizado
         } = req.body
 
         const servicoAtualizarRelease = new ServicoAtualizarRelease();
@@ -15,7 +15,8 @@ class ControleAtualizarRelease {
             versao_gestores, 
             versao_sincdata, 
             versao_gestorpdv, 
-            versao_balcao
+            versao_balcao,
+            finalizado
         })
 
         return res.json(release)
