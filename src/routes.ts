@@ -88,6 +88,7 @@ import { ControleCriarMvProva } from './controle/prova_mv/controleCriarMvProva';
 import { ControleDetalharCadUsuario } from './controle/usuario/controleDetalharCadUsuario';
 import { ControleAtualizarUsuario } from './controle/usuario/controleAtualizarUsuario';
 import { ControleDeletarReleaseItem } from './controle/release_item/controleDeletarReleaseItem';
+import { ControleListarQuestaoSemProva } from './controle/questao/controleListarQuestaoSemProva';
 
 const router = Router();
 
@@ -137,6 +138,7 @@ router.put('/atualizarvideo', estaAutentidado, new ControleAtualizarVideo().hand
 
 router.post('/criarquestoes', estaAutentidado, new ControleCriarQuestoes().handle)
 router.get('/listarquestao', estaAutentidado, new ControleListarQuestao().handle)
+router.get('/listarquestaosemprova', estaAutentidado, new ControleListarQuestaoSemProva().handle)
 router.put('/trocarstatusquestao', estaAutentidado, new ControleTrocarStatusQuestao().handle)
 router.get('/detalharquestao/:id_questao', estaAutentidado, new ControleDetalharQuestao().handle)
 router.put('/atualizarquestao', estaAutentidado, new ControleAtualizarQuestao().handle)

@@ -6,7 +6,8 @@ class ServicoAtualizarQuestao {
         id_sistema,    
         id_submodulo,  
         id_modulo,     
-        id_aula,       
+        id_aula,
+        id_prova,       
         questao,       
         alternativa_A, 
         alternativa_B, 
@@ -21,10 +22,11 @@ class ServicoAtualizarQuestao {
                 where : {
                     id_questao: Number(id_questao)
                 }, data :{
-                    id_sistema    : Number(id_sistema),    
+                    id_sistema    : Number(id_sistema) ?? null,    
                     id_submodulo  : Number(id_submodulo),  
                     id_modulo     : Number(id_modulo),     
-                    id_aula       : Number(id_aula),       
+                    id_aula       : Number(id_aula),
+                    id_prova      : Number(id_prova),       
                     questao       : questao,       
                     alternativa_A : alternativa_A, 
                     alternativa_B : alternativa_B, 
@@ -37,6 +39,7 @@ class ServicoAtualizarQuestao {
             })
             return questoes  
         } catch (err) {
+            console.error(err)
             throw new Error(err)         
         }
 
