@@ -16,7 +16,7 @@ class ControleAtualizarRelease {
             versao_sincdata, 
             versao_gestorpdv, 
             versao_balcao,
-            finalizado
+            finalizado : finalizado ? finalizado === 'true' : true ? finalizado === 'false' : false
         })
 
         return res.json(release)

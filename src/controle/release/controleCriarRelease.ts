@@ -14,7 +14,7 @@ class ControleCriarRelease {
             versao_gestorpdv, 
             versao_balcao,
             id_usuario,
-            finalizado
+            finalizado : finalizado ? finalizado === 'true' : true ? finalizado === 'false' : false
             })
 
         return res.json(release)

@@ -13,12 +13,13 @@ class ServicoCriarRelease {
                     versao_gestorpdv, 
                     versao_balcao,
                     id_usuario : Number(id_usuario),
-                    finalizado : Boolean(finalizado)
+                    finalizado : finalizado 
                 }
             })
             return release
         } catch (error) {
             console.error(error)
+            throw new Error('Erro no servico criar Rerlease')
         }
 
     }

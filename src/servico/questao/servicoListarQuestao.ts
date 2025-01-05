@@ -9,7 +9,9 @@ class ServicoListarQuestao {
             questao      : filtros.questoes ? {contains: filtros.questoes, mode: Prisma.QueryMode.insensitive} : undefined,
             id_sistema   : filtros.id_sistema, 
             id_modulo    : filtros.id_modulo, 
-            id_submodulo : filtros.id_submodulo
+            id_submodulo : filtros.id_submodulo,
+            id_prova     : filtros.id_prova, 
+            id_aula      : filtros.id_aula,
         }
         
         const buscaquestao = await prismaClient.questao.findMany({
@@ -42,7 +44,8 @@ class ServicoListarQuestao {
         id_modulo      : questao.id_modulo, 
         nome_modulo    : questao.modulo?.nome_modulo,
         id_submodulo   : questao.id_submodulo,
-        nome_submodulo : questao.submodulo?.nome_submodulo
+        nome_submodulo : questao.submodulo?.nome_submodulo,
+        id_prova       : questao.id_prova
     }))
     }
 }

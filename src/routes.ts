@@ -87,6 +87,7 @@ import { ControleCriarMvQuestao } from './controle/questao_mv/controleCriarMvQue
 import { ControleCriarMvProva } from './controle/prova_mv/controleCriarMvProva';
 import { ControleDetalharCadUsuario } from './controle/usuario/controleDetalharCadUsuario';
 import { ControleAtualizarUsuario } from './controle/usuario/controleAtualizarUsuario';
+import { ControleDeletarReleaseItem } from './controle/release_item/controleDeletarReleaseItem';
 
 const router = Router();
 
@@ -162,6 +163,7 @@ router.post('/criarreleaseitem', estaAutentidado, new ControleCriarReleaseItem()
 router.get('/listarreleaseitem', estaAutentidado, new ControleListarReleaseItem().handle)
 router.get('/detalharreleaseitem/:id_item_release', estaAutentidado, new ControleDetalharReleaseItem().handle)
 router.put('/atualizarreleaseitem', estaAutentidado, new ControleAtualizarReleaseItem().handle)
+router.delete('/deletaritemrelease/:id_item_release', estaAutentidado, new ControleDeletarReleaseItem().handle)
 
 router.post('/criarplanejamento', estaAutentidado, new ControleCriarPlanejamento().handle)
 router.get('/listarplanejamento', estaAutentidado, new ControleListarPlanejamento().handle)
