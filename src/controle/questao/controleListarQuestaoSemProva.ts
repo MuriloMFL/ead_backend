@@ -12,7 +12,7 @@ class ControleListarQuestaoSemProva {
             id_sistema   : id_sistema, 
             id_modulo    : id_modulo, 
             id_submodulo : id_submodulo,
-            id_prova     : id_prova ? Number(id_modulo) : null,
+            id_prova     : id_prova ? Number(id_prova) : null,
             id_aula      : id_aula ? Number(id_aula) : null,
         }
         

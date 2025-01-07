@@ -10,8 +10,8 @@ class ServicoListarQuestaoSemProva  {
             id_sistema   : filtros.id_sistema, 
             id_modulo    : filtros.id_modulo, 
             id_submodulo : filtros.id_submodulo,
-            id_prova     : filtros.id_prova, 
-            id_aula      : filtros.id_aula,
+            id_prova     : filtros.id_prova ? Number(filtros.id_prova) : null,
+            id_aula      : null,
         }
         
         const buscaquestao = await prismaClient.questao.findMany({
@@ -35,6 +35,7 @@ class ServicoListarQuestaoSemProva  {
             }
         })
 
+        console.log(buscaquestao)
     return buscaquestao.map((questao)=> ({ 
         id_questao     : questao.id_questao, 
         status         : questao.status, 

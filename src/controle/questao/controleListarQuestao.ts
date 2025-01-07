@@ -12,8 +12,6 @@ class ControleListarQuestao {
             id_sistema   : id_sistema, 
             id_modulo    : id_modulo, 
             id_submodulo : id_submodulo,
-            id_prova     : Number(id_prova),
-            id_aula      : Number(id_aula),
         }
         
         const servicolistarquestao = new ServicoListarQuestao();

@@ -138,7 +138,6 @@ router.put('/atualizarvideo', estaAutentidado, new ControleAtualizarVideo().hand
 
 router.post('/criarquestoes', estaAutentidado, new ControleCriarQuestoes().handle)
 router.get('/listarquestao', estaAutentidado, new ControleListarQuestao().handle)
-router.get('/listarquestaosemprova', estaAutentidado, new ControleListarQuestaoSemProva().handle)
 router.put('/trocarstatusquestao', estaAutentidado, new ControleTrocarStatusQuestao().handle)
 router.get('/detalharquestao/:id_questao', estaAutentidado, new ControleDetalharQuestao().handle)
 router.put('/atualizarquestao', estaAutentidado, new ControleAtualizarQuestao().handle)
