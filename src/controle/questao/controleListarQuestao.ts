@@ -12,6 +12,8 @@ class ControleListarQuestao {
             id_sistema   : id_sistema, 
             id_modulo    : id_modulo, 
             id_submodulo : id_submodulo,
+            id_aula      : id_aula? Number(id_aula) : undefined,
+            id_prova     : id_prova ? Number(id_prova) : undefined
         }
         
         const servicolistarquestao = new ServicoListarQuestao();

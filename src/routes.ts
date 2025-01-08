@@ -89,6 +89,9 @@ import { ControleDetalharCadUsuario } from './controle/usuario/controleDetalharC
 import { ControleAtualizarUsuario } from './controle/usuario/controleAtualizarUsuario';
 import { ControleDeletarReleaseItem } from './controle/release_item/controleDeletarReleaseItem';
 import { ControleListarQuestaoSemProva } from './controle/questao/controleListarQuestaoSemProva';
+import { ServicoListarQuestaoSemProva } from './servico/questao/servicoListarQuestaoSemProva';
+import { ControleIncluirQuestaoNaProva } from './controle/questao/controleIncluirQuestaoNaProva';
+import { ControleExcluirQuestaoNaProva } from './controle/questao/controleExcluirQuestaoNaProva';
 
 const router = Router();
 
@@ -138,9 +141,12 @@ router.put('/atualizarvideo', estaAutentidado, new ControleAtualizarVideo().hand
 
 router.post('/criarquestoes', estaAutentidado, new ControleCriarQuestoes().handle)
 router.get('/listarquestao', estaAutentidado, new ControleListarQuestao().handle)
+router.get('/listarquestaosemprova', estaAutentidado, new ControleListarQuestaoSemProva().handle)
 router.put('/trocarstatusquestao', estaAutentidado, new ControleTrocarStatusQuestao().handle)
 router.get('/detalharquestao/:id_questao', estaAutentidado, new ControleDetalharQuestao().handle)
 router.put('/atualizarquestao', estaAutentidado, new ControleAtualizarQuestao().handle)
+router.put('/incluirquestaonaprova', estaAutentidado, new ControleIncluirQuestaoNaProva().handle)
+router.put('/excluirquestaonaprova', estaAutentidado, new ControleExcluirQuestaoNaProva().handle)
 
 router.post('/criaraula', estaAutentidado, new ControleCriarAula().handle)
 router.get('/listaraula', estaAutentidado, new ControleListarAula().handle)

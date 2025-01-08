@@ -26,7 +26,7 @@ class ControleAtualizarQuestao {
                 id_sistema,    
                 id_submodulo,  
                 id_modulo,     
-                id_aula, 
+                id_aula,
                 id_prova,      
                 questao,       
                 alternativa_A, 
