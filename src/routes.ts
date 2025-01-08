@@ -89,9 +89,11 @@ import { ControleDetalharCadUsuario } from './controle/usuario/controleDetalharC
 import { ControleAtualizarUsuario } from './controle/usuario/controleAtualizarUsuario';
 import { ControleDeletarReleaseItem } from './controle/release_item/controleDeletarReleaseItem';
 import { ControleListarQuestaoSemProva } from './controle/questao/controleListarQuestaoSemProva';
-import { ServicoListarQuestaoSemProva } from './servico/questao/servicoListarQuestaoSemProva';
 import { ControleIncluirQuestaoNaProva } from './controle/questao/controleIncluirQuestaoNaProva';
 import { ControleExcluirQuestaoNaProva } from './controle/questao/controleExcluirQuestaoNaProva';
+import { ControleContarQtdModulo } from './controle/dashboard/ControleContarQtdModulos';
+import { ControleContarQtdSubModulo } from './controle/dashboard/controleContarQtdSubModulo';
+import { ControleContarQtdAulas } from './controle/dashboard/controleContarQtdAulas';
 
 const router = Router();
 
@@ -189,5 +191,9 @@ router.post('/criarmvfaq', estaAutentidado, new ControleCriarMvFaq().handle)
 router.post('/criarmvquestao', estaAutentidado, new ControleCriarMvQuestao().handle)
 
 router.post('/criarmvprova', estaAutentidado, new ControleCriarMvProva().handle)
+
+router.get('/contarmodulos', estaAutentidado, new ControleContarQtdModulo().handle)
+router.get('/contarsubmodulos', estaAutentidado, new ControleContarQtdSubModulo().handle)
+router.get('/contaraulas', estaAutentidado, new ControleContarQtdAulas().handle)
 
 export { router };
