@@ -7,7 +7,10 @@ class ServicoContarQtdSubModulos {
                 status: true
             }
         })
-        return SubModulos
+        if (SubModulos > 0){
+            return SubModulos
+        }
+
     }
 }
 

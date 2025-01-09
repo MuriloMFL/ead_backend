@@ -7,7 +7,10 @@ class ServicoContarQtdAulas {
                 status: true
             }
         })
-        return Aulas
+        if(Aulas > 0){
+            return Aulas
+        }
+        
     }
 }
 

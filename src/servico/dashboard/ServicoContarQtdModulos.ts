@@ -7,7 +7,9 @@ class ServicoContarQtdModulos {
                 status: true
             }
         })
-        return Modulos
+        if (Modulos > 0) {
+            return Modulos 
+        }
     }
 }
 
