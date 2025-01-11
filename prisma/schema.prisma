@@ -196,7 +196,7 @@ model Faq {
   link          String
   observacao    String?
   order         Int?
-  
+
   data_criacao  DateTime  @default(now())
   data_inativo  DateTime?
   status        Boolean @default(true)
@@ -210,7 +210,6 @@ model Faq {
 
   @@map("faq")
 }
-
 
 model Questao {
   id_questao    Int @id @default(autoincrement())

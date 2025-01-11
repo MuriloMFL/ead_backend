@@ -6,7 +6,7 @@ class ControleCriarFaq {
         const {id_sistema, id_modulo, id_submodulo, id_aula, nome_faq, link, observacao, order} = req.body;
 
         const servicocriarfaq = new ServicoCriarFaq();
-        
+
         const faq = await servicocriarfaq.executar({
             id_sistema    : id_sistema, 
             id_modulo     : id_modulo, 
@@ -15,8 +15,7 @@ class ControleCriarFaq {
             nome_faq      : nome_faq, 
             link          : link, 
             observacao    : observacao, 
-            order         : order,
-            
+            order         : order
         })
         
         return res.json(faq)

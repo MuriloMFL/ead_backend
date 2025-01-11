@@ -1,13 +1,9 @@
 import prismaClient from "../../prisma";
 
-class ServicoAtualizarFaq {
-    async executar({id_faq, id_sistema, id_modulo, id_submodulo, id_aula, nome_faq, link, observacao, order}){
-        
+class ServicoCriarFaq {
+    async executar({id_sistema, id_modulo, id_submodulo, id_aula, nome_faq, link, observacao, order}){
         try {
-            const faq = await prismaClient.faq.update({
-                where: {
-                    id_faq: Number(id_faq)
-                },
+            const faq = await prismaClient.faq.create({
                 data:{
                     id_sistema:   Number(id_sistema), 
                     id_modulo:    Number(id_modulo), 
@@ -19,12 +15,13 @@ class ServicoAtualizarFaq {
                     order:        Number(order)
                 }
             })
+            
             return faq
         } catch (error) {
             console.error(error)
-            throw new Error ('Erro no servico de atualizar faq')
+            throw new Error ('Erro no servico de criar faq')
         }
     }
 }
 
-export {ServicoAtualizarFaq}
+export {ServicoCriarFaq}

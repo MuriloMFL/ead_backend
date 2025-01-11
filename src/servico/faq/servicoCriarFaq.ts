@@ -15,7 +15,6 @@ class ServicoCriarFaq {
                     order:        Number(order)
                 }
             })
-            
             return faq
         } catch (error) {
             console.error(error)
