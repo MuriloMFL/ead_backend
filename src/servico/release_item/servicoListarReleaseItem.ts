@@ -3,18 +3,18 @@ import prismaClient from "../../prisma";
 
 class ServicoListarReleaseItem {
     async executar(filtros) {
-        try {
-            
+        console.log(filtros)
+        try {           
             const where = {
                 id_item_release: filtros.id_item_release ? Number(filtros.id_item_release) : undefined,
-                nome_release: filtros.nome_release ? { contains: filtros.nome_release, mode: Prisma.QueryMode.insensitive } : undefined,
-                numero_release: filtros.numero_release ? Number(filtros.numero_release) : undefined,
-                id_release: filtros.id_release ? Number(filtros.id_release) : undefined,
-                id_sistema: filtros.id_sistema ? Number(filtros.id_sistema) : undefined,
-                id_modulo: filtros.id_modulo ? Number(filtros.id_modulo) : undefined,
-                id_submodulo: filtros.id_submodulo ? Number(filtros.id_submodulo) : undefined,
-                correcao: filtros.correcao !== undefined ? Boolean(filtros.correcao) : undefined,
-                alteracao: filtros.alteracao !== undefined ? Boolean(filtros.alteracao) : undefined,
+                nome_release:    filtros.nome_release ? { contains: filtros.nome_release, mode: Prisma.QueryMode.insensitive } : undefined,
+                numero_release:  filtros.numero_release ? Number(filtros.numero_release) : undefined,
+                id_release:      filtros.id_release ? Number(filtros.id_release) : undefined,
+                id_sistema:      filtros.id_sistema ? Number(filtros.id_sistema) : undefined,
+                id_modulo:       filtros.id_modulo ? Number(filtros.id_modulo) : undefined,
+                id_submodulo:    filtros.id_submodulo ? Number(filtros.id_submodulo) : undefined,
+                correcao:        filtros.correcao !== undefined ? Boolean(filtros.correcao) : undefined,
+                alteracao:       filtros.alteracao !== undefined ? Boolean(filtros.alteracao) : undefined,
             };
     
             const BuscaReleaseItem = await prismaClient.release_item.findMany({
@@ -39,6 +39,7 @@ class ServicoListarReleaseItem {
                 nome_submodulo: ReleaseItem?.submodulo?.nome_submodulo,
                 correcao: ReleaseItem.correcao,
                 alteracao: ReleaseItem.alteracao,
+                observacao: ReleaseItem.observacao
             }));
         } catch (error) {
             console.error('Erro no serviço de ListarItem:', error);

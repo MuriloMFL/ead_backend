@@ -94,6 +94,7 @@ import { ControleExcluirQuestaoNaProva } from './controle/questao/controleExclui
 import { ControleContarQtdModulo } from './controle/dashboard/ControleContarQtdModulos';
 import { ControleContarQtdSubModulo } from './controle/dashboard/controleContarQtdSubModulo';
 import { ControleContarQtdAulas } from './controle/dashboard/controleContarQtdAulas';
+import { ControleContarProvas } from './controle/dashboard/controleContarProvas';
 
 const router = Router();
 
@@ -195,5 +196,6 @@ router.post('/criarmvprova', estaAutentidado, new ControleCriarMvProva().handle)
 router.get('/contarmodulos', estaAutentidado, new ControleContarQtdModulo().handle)
 router.get('/contarsubmodulos', estaAutentidado, new ControleContarQtdSubModulo().handle)
 router.get('/contaraulas', estaAutentidado, new ControleContarQtdAulas().handle)
+router.get('/contarprovas', estaAutentidado, new ControleContarProvas().handle)
 
 export { router };
