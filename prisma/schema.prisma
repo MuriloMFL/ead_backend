@@ -271,7 +271,7 @@ model Mv_Aula {
   id_sistema    Int
   id_submodulo  Int
   id_modulo     Int
-  id_aula       Int 
+  id_aula       Int
   id_usuario    Int 
   id_franquia   Int 
 
@@ -295,7 +295,7 @@ model Mv_Faq {
   id_sistema    Int
   id_submodulo  Int
   id_modulo     Int
-  id_aula       Int
+  id_aula       Int?
   id_usuario    Int
   id_franquia   Int 
   
@@ -306,7 +306,7 @@ model Mv_Faq {
   sistema       Sistema   @relation(fields: [id_sistema],   references: [id_sistema])
   modulo        Modulo    @relation(fields: [id_modulo],    references: [id_modulo])
   submodulo     SubModulo @relation(fields: [id_submodulo], references: [id_submodulo])
-  aula          Aula      @relation(fields: [id_aula],      references: [id_aula])
+  aula          Aula?      @relation(fields: [id_aula],      references: [id_aula])
   faq           Faq       @relation(fields: [id_faq],       references: [id_faq])
   usuario       Usuario   @relation(fields: [id_usuario],   references: [id_usuario])
   franquia      Franquia  @relation(fields: [id_franquia],  references: [id_franquia])  
