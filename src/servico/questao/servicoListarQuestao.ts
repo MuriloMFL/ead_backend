@@ -49,7 +49,8 @@ class ServicoListarQuestao {
         alternativa_A  : questao.alternativa_A,
         alternativa_B  : questao.alternativa_B ,
         alternativa_C  : questao.alternativa_C || null,
-        alternativa_D  : questao.alternativa_D || null
+        alternativa_D  : questao.alternativa_D || null,
+        correta        : questao.correta,
     }))
     }
 }
