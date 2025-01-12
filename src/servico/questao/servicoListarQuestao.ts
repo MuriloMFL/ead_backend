@@ -45,7 +45,11 @@ class ServicoListarQuestao {
         nome_modulo    : questao.modulo?.nome_modulo,
         id_submodulo   : questao.id_submodulo,
         nome_submodulo : questao.submodulo?.nome_submodulo,
-        id_prova       : questao.id_prova
+        id_prova       : questao.id_prova,
+        alternativa_A  : questao.alternativa_A,
+        alternativa_B  : questao.alternativa_B ,
+        alternativa_C  : questao.alternativa_C || null,
+        alternativa_D  : questao.alternativa_D || null
     }))
     }
 }

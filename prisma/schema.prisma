@@ -383,10 +383,10 @@ model Mv_Questao {
   sistema       Sistema    @relation(fields: [id_sistema],   references: [id_sistema])
   modulo        Modulo     @relation(fields: [id_modulo],    references: [id_modulo])
   submodulo     SubModulo  @relation(fields: [id_submodulo], references: [id_submodulo]) 
-  aula          Aula?       @relation(fields: [id_aula],      references: [id_aula])
+  aula          Aula?      @relation(fields: [id_aula],      references: [id_aula])
   usuario       Usuario    @relation(fields: [id_usuario],   references: [id_usuario])
   questao       Questao    @relation(fields: [id_questao],   references: [id_questao])
-  prova         Prova?      @relation(fields: [id_prova],     references: [id_prova])
+  prova         Prova?     @relation(fields: [id_prova],     references: [id_prova])
   franquia      Franquia   @relation(fields: [id_franquia],  references: [id_franquia])
 
   @@map("mv_questao")
