@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
     "build": "tsc --build",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "deploy": "git pull && npm install && npx prisma migrate deploy && tsc --build && restart ead_backend"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
