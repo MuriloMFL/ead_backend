@@ -6,7 +6,14 @@ import { router } from './routes';
 
 const app = express();
 app.use(express.json()); 
-app.use(cors());
+
+app.use(cors({
+    origin: ['https://ead.murilofrizziero.dev.br', 'http://localhost:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+}));
+
 app.use(router); 
 
 app.use((err: Error, req:Request, res: Response, next:NextFunction)=> {
