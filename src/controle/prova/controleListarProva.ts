@@ -14,7 +14,6 @@ class ControleListarProva {
             status       : status == 'true' ? true : status =='false' ? false : undefined,
 
         }
-        console.log(id_prova, id_sistema, nome_prova, id_modulo, id_submodulo, status)
         const servicolistarprovas = new ServicoListarProva();
         
         const provas = await servicolistarprovas.executar(filtros)

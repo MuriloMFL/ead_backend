@@ -3,7 +3,6 @@ import prismaClient from "../../prisma";
 
 class ServicoListarReleaseItem {
     async executar(filtros) {
-        console.log(filtros)
         try {           
             const where = {
                 id_item_release: filtros.id_item_release ? Number(filtros.id_item_release) : undefined,

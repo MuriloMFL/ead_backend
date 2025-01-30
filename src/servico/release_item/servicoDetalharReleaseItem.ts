@@ -4,7 +4,7 @@ import fs from 'fs'
 class ServicoDetalharReleaseItem {
     async executar({id_item_release}){
         try {
-            console.log(id_item_release)
+            
             const releaseItem = await prismaClient.release_item.findFirst({
                 where : {
                     id_item_release : Number(id_item_release)
