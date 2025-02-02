@@ -193,9 +193,9 @@ router.post('/criarmvquestao', estaAutentidado, new ControleCriarMvQuestao().han
 
 router.post('/criarmvprova', estaAutentidado, new ControleCriarMvProva().handle)
 
-router.get('/contarmodulos', estaAutentidado, new ControleContarQtdModulo().handle)
-router.get('/contarsubmodulos', estaAutentidado, new ControleContarQtdSubModulo().handle)
-router.get('/contaraulas', estaAutentidado, new ControleContarQtdAulas().handle)
-router.get('/contarprovas', estaAutentidado, new ControleContarProvas().handle)
+router.get('/contarmodulos',  new ControleContarQtdModulo().handle)
+router.get('/contarsubmodulos',  new ControleContarQtdSubModulo().handle)
+router.get('/contaraulas',  new ControleContarQtdAulas().handle)
+router.get('/contarprovas',  new ControleContarProvas().handle)
 
 export { router };
