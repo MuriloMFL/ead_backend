@@ -2,7 +2,7 @@ import prismaClient from "../../prisma";
 
 interface Sistema {
     nome_sistema?: string;
-    status?: boolean;
+    status?      : boolean;
 }
 
 class ServicoListarSistema {

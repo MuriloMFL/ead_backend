@@ -9,7 +9,7 @@ class ServicoListarVideo {
                           ? { contains: filtros.nome_video, mode: Prisma.QueryMode.insensitive }
                           : undefined,
             status:       filtros.status,
-            id_sistema:   filtros.id_sistema,
+            id_sistema:   filtros.id_sistema ? Number(filtros.id_sistema) : undefined, 
             id_modulo:    filtros.id_modulo,
             id_submodulo: filtros.id_submodulo 
         }

@@ -26,12 +26,12 @@ class ServicoCriarMvProva {
         
         const verificaSeExiste = await prismaClient.mv_Prova.findFirst({
            where: {
-            id_sistema: Number(id_sistema),
+            id_sistema:   Number(id_sistema),
             id_submodulo: Number(id_submodulo),
-            id_modulo: Number(id_modulo),
-            id_usuario: Number(id_usuario),
-            id_franquia: Number(id_franquia),
-            id_prova   : Number(id_prova)
+            id_modulo:    Number(id_modulo),
+            id_usuario:   Number(id_usuario),
+            id_franquia:  Number(id_franquia),
+            id_prova   :  Number(id_prova)
            } 
         })
 
@@ -39,12 +39,12 @@ class ServicoCriarMvProva {
             try {
                 const prova_mv = await prismaClient.mv_Prova.create({
                     data: {
-                        id_sistema: Number(id_sistema),
+                        id_sistema:   Number(id_sistema),
                         id_submodulo: Number(id_submodulo),
-                        id_modulo: Number(id_modulo),
-                        id_usuario: Number(id_usuario),
-                        id_franquia: Number(id_franquia),
-                        id_prova   : Number(id_prova),
+                        id_modulo:    Number(id_modulo),
+                        id_usuario:   Number(id_usuario),
+                        id_franquia:  Number(id_franquia),
+                        id_prova   :  Number(id_prova),
                         nota  : notaporcentagem
                     }
                 })
