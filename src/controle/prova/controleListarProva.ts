@@ -4,7 +4,6 @@ import { Response, Request } from "express";
 class ControleListarProva {
     async handle(req:Request, res: Response){
         const {id_prova, id_sistema, nome_prova, id_modulo, id_submodulo, status, id_usuario, finalizado} = req.query;
-        console.log(finalizado, id_usuario)
         const filtros = {
             id_prova     : id_prova,
             id_sistema   : id_sistema,
