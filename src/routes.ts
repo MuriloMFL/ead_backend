@@ -95,6 +95,7 @@ import { ControleContarQtdModulo } from './controle/dashboard/ControleContarQtdM
 import { ControleContarQtdSubModulo } from './controle/dashboard/controleContarQtdSubModulo';
 import { ControleContarQtdAulas } from './controle/dashboard/controleContarQtdAulas';
 import { ControleContarProvas } from './controle/dashboard/controleContarProvas';
+import { ControleVerificarMvVideo } from './controle/video_mv/controleVerificarMvVideo';
 
 const router = Router();
 
@@ -186,6 +187,7 @@ router.post('/criarmvrelease', estaAutentidado, new ControleCriarMvRelease().han
 router.post('/criarmvAula', estaAutentidado, new ControleCriarMvAula().handle)
 
 router.post('/criarmvvideo', estaAutentidado, new ControleCriarMvVideo().handle)
+router.get('/verificarmvvideo', estaAutentidado, new ControleVerificarMvVideo().handle)
 
 router.post('/criarmvfaq', estaAutentidado, new ControleCriarMvFaq().handle)
 
