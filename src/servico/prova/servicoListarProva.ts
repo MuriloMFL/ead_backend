@@ -51,16 +51,21 @@ class ServicoListarProva {
 
       //Pega as provas pendentes
       if (!filtros.finalizado) {
+        const whereClause: any = { ...dados };
+
+        if (filtros.id_usuario) {
+          whereClause.mv_prova = {
+            none: {
+              AND: [
+                { id_usuario: filtros.id_usuario },
+                filtros.id_prova ? { id_prova: filtros.id_prova } : {},
+              ],
+            },
+          };
+        }
+        
         const buscaprova = await prismaClient.prova.findMany({
-          where: {
-            ...dados,
-            mv_prova : {
-              none: {
-               // id_prova: filtros.id_prova,
-              //  id_usuario: filtros.id_usuario,
-              }
-            }
-          },
+          where: whereClause,
           include: {
             sistema: {
               select: { nome_sistema: true },
