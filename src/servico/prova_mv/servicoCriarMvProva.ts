@@ -45,7 +45,7 @@ class ServicoCriarMvProva {
                         id_usuario:   Number(id_usuario),
                         id_franquia:  Number(id_franquia),
                         id_prova   :  Number(id_prova),
-                        nota  : notaporcentagem
+                        nota  :       notaporcentagem
                     }
                 })
                 return prova_mv

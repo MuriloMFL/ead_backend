@@ -3,8 +3,8 @@ import { Response, Request } from "express";
 
 class ControleListarProva {
     async handle(req:Request, res: Response){
-        const {id_prova, id_sistema, nome_prova, id_modulo, id_submodulo, status} = req.query;
-        
+        const {id_prova, id_sistema, nome_prova, id_modulo, id_submodulo, status, id_usuario, finalizado} = req.query;
+        console.log(finalizado, id_usuario)
         const filtros = {
             id_prova     : id_prova,
             id_sistema   : id_sistema,
@@ -12,6 +12,8 @@ class ControleListarProva {
             id_submodulo : id_submodulo,
             nome_prova   : nome_prova,
             status       : status == 'true' ? true : status =='false' ? false : undefined,
+            id_usuario   : Number(id_usuario),
+            finalizado   : finalizado ==='true' ? true : finalizado ==='false' ? false : undefined,
 
         }
         const servicolistarprovas = new ServicoListarProva();
