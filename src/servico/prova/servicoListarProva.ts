@@ -13,85 +13,97 @@ class ServicoListarProva {
           status       : filtros.status,
       }
 
-      if (filtros.finalizado) {
-        const buscaMvProva = await prismaClient.mv_Prova.findMany ({
-          where: {
-            id_prova: filtros.id_prova,
-            id_usuario: filtros.id_usuario,
-          },include: {
-            sistema: {
-              select: { nome_sistema: true },
-            },
-            modulo: {
-              select: { nome_modulo: true },
-            },
-            submodulo: {
-              select: { nome_submodulo: true },
-            },
-            prova: {
-              select: {nome_prova: true}
-            }
-          },
-        });
+      if(filtros.id_usuario) {
+        if (filtros.finalizado) {
+          const whereClause: any = { ...dados };
   
-        return buscaMvProva.map((prova) => ({
-          id_prova: prova.id_prova,
-          id_sistema: prova.id_sistema,
-          nome_sistema: prova.sistema?.nome_sistema,
-          id_modulo: prova.id_modulo,
-          nome_modulo: prova.modulo?.nome_modulo,
-          id_submodulo: prova.id_submodulo,
-          nome_submodulo: prova.submodulo?.nome_submodulo,
-          nome_prova : prova.prova?.nome_prova,
-          status: prova.status,
-          nota : prova.nota
-        }));  
+          if (filtros.id_usuario) {
+            whereClause.mv_prova = {
+              some: {
+                AND: [
+                  { id_usuario: filtros.id_usuario },
+                  filtros.id_prova ? { id_prova: filtros.id_prova } : {},
+                ],
+              },
+            };
+          }
+          
+          const buscaprova = await prismaClient.prova.findMany({
+            where: whereClause,
+            include: {
+              sistema: {
+                select: { nome_sistema: true },
+              },
+              modulo: {
+                select: { nome_modulo: true },
+              },
+              submodulo: {
+                select: { nome_submodulo: true },
+              },
+              mv_prova: {
+                where: {id_usuario: filtros.id_usuario},
+                select: {nota: true}
+              }
+            },
+          });
+                 
+          return buscaprova.map((prova) => ({
+            id_prova: prova.id_prova,
+            id_sistema: prova.id_sistema,
+            nome_sistema: prova.sistema?.nome_sistema,
+            id_modulo: prova.id_modulo,
+            nome_modulo: prova.modulo?.nome_modulo,
+            id_submodulo: prova.id_submodulo,
+            nome_submodulo: prova.submodulo?.nome_submodulo,
+            nome_prova: prova.nome_prova,
+            status: prova.status,
+            nota: prova.mv_prova[0]?.nota ?? null,
+          }));  
+        }  
   
+        //Pega as provas pendentes
+        if (!filtros.finalizado) {
+          const whereClause: any = { ...dados };
+  
+          if (filtros.id_usuario) {
+            whereClause.mv_prova = {
+              none: {
+                AND: [
+                  { id_usuario: filtros.id_usuario },
+                  filtros.id_prova ? { id_prova: filtros.id_prova } : {},
+                ],
+              },
+            };
+          }
+          
+          const buscaprova = await prismaClient.prova.findMany({
+            where: whereClause,
+            include: {
+              sistema: {
+                select: { nome_sistema: true },
+              },
+              modulo: {
+                select: { nome_modulo: true },
+              },
+              submodulo: {
+                select: { nome_submodulo: true },
+              },
+            },
+          });
+                 
+          return buscaprova.map((prova) => ({
+            id_prova: prova.id_prova,
+            id_sistema: prova.id_sistema,
+            nome_sistema: prova.sistema?.nome_sistema,
+            id_modulo: prova.id_modulo,
+            nome_modulo: prova.modulo?.nome_modulo,
+            id_submodulo: prova.id_submodulo,
+            nome_submodulo: prova.submodulo?.nome_submodulo,
+            nome_prova: prova.nome_prova,
+            status: prova.status,
+          }));  
+        }      
       }
-
-      //Pega as provas pendentes
-      if (!filtros.finalizado) {
-        const whereClause: any = { ...dados };
-
-        if (filtros.id_usuario) {
-          whereClause.mv_prova = {
-            none: {
-              AND: [
-                { id_usuario: filtros.id_usuario },
-                filtros.id_prova ? { id_prova: filtros.id_prova } : {},
-              ],
-            },
-          };
-        }
-        
-        const buscaprova = await prismaClient.prova.findMany({
-          where: whereClause,
-          include: {
-            sistema: {
-              select: { nome_sistema: true },
-            },
-            modulo: {
-              select: { nome_modulo: true },
-            },
-            submodulo: {
-              select: { nome_submodulo: true },
-            },
-          },
-        });
-               
-        return buscaprova.map((prova) => ({
-          id_prova: prova.id_prova,
-          id_sistema: prova.id_sistema,
-          nome_sistema: prova.sistema?.nome_sistema,
-          id_modulo: prova.id_modulo,
-          nome_modulo: prova.modulo?.nome_modulo,
-          id_submodulo: prova.id_submodulo,
-          nome_submodulo: prova.submodulo?.nome_submodulo,
-          nome_prova: prova.nome_prova,
-          status: prova.status,
-        }));  
-      }
-       
     }
 }
 export {ServicoListarProva}

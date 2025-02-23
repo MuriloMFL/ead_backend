@@ -1,5 +1,4 @@
 import { Router } from 'express';
-
 import { estaAutentidado } from './middlewares/estaAutentidado';
 
 import { ControleCriarUsuario } from './controle/usuario/controleCriarUsuario';
@@ -107,7 +106,7 @@ router.get('/listarusuarioporfranquia', estaAutentidado, new ControleListarUsuar
 router.put('/atualizarusuario', estaAutentidado, new ControleAtualizarUsuario().handle)
 router.put('/trocarstatususuario', estaAutentidado, new ControleInativarUsuario().handle)
 
-router.post('/criarfranquia', new ControleCriarFranquia().handle)
+router.post('/criarfranquia', estaAutentidado, new ControleCriarFranquia().handle)
 router.get('/listarfranquia',   estaAutentidado, new ControleListarFranquia().handle)
 router.get('/detalharfranquia/:id_franquia', estaAutentidado, new ControleDetalharFranquia().handle)
 router.put('/trocarstatusfranquia', estaAutentidado, new ControleTrocarStatusFranquia().handle)

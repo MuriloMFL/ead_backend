@@ -11,7 +11,7 @@ class ServicoListarFranquia {
             where: {
                 status: filtros.status,
                 nome: filtros.nome ? { contains: filtros.nome, mode: 'insensitive' } : undefined,
-                id_franquia: filtros.id_franquia
+                //id_franquia: filtros.id_franquia
             },
             select: {
                 id_franquia: true,

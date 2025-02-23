@@ -8,7 +8,7 @@ class ControleVerificarMvVideo {
         const servicoverificarmvvideo = new ServicoVerificarMvVideo();
 
         const video = await servicoverificarmvvideo.executar(
-            Number(id_video)
+            Number(id_video), Number(id_usuario)
         )
 
         return res.json(video)

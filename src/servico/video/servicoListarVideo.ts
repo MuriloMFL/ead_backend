@@ -16,100 +16,147 @@ class ServicoListarVideo {
         }
 
         try {
-            if (filtros.finalizado){
-                const buscavideo = await prismaClient.mv_Video.findMany({
-                    where: {
-                        id_usuario: Number(filtros.id_usuario),
-                    },
-                    include: {
-                        sistema: {
-                            select: {
-                                nome_sistema: true
+            if(filtros.id_usuario) {
+                if (filtros.finalizado === undefined) {
+                    const buscavideo = await prismaClient.video.findMany({
+                        where: dados,
+                        include: {
+                            sistema: {
+                                select: {
+                                    nome_sistema: true
+                                }
+                            },
+                            modulo :{
+                                select: {
+                                    nome_modulo: true
+                                }
+                            },
+                            submodulo:{
+                                select: {
+                                    nome_submodulo: true
+                                }
                             }
-                        },
-                        modulo :{
-                            select: {
-                                nome_modulo: true
-                            }
-                        },
-                        submodulo:{
-                            select: {
-                                nome_submodulo: true
-                            }
-                        },
-                        video: {
-                            select: {
-                                nome_video: true
-                            }
+        
                         }
-    
-                    }
-                })
+                    })
 
-                return buscavideo.map( (video) => ({
-                    id_video       : video.id_video,
-                    id_sistema     : video.id_sistema,
-                    nome_sistema   : video.sistema?.nome_sistema,
-                    id_modulo      : video.id_modulo,
-                    nome_modulo    : video.modulo?.nome_modulo,
-                    id_submodulo   : video.id_submodulo,
-                    nome_submodulo : video.submodulo?.nome_submodulo,
-                    nome_video     : video.video?.nome_video,
-                    status         : video.status
-                }))
-            }
+                    return buscavideo.map( (video) => ({
+                        id_video       : video.id_video,
+                        id_sistema     : video.id_sistema,
+                        nome_sistema   : video.sistema?.nome_sistema,
+                        id_modulo      : video.id_modulo,
+                        nome_modulo    : video.modulo?.nome_modulo,
+                        id_submodulo   : video.id_submodulo,
+                        nome_submodulo : video.submodulo?.nome_submodulo,
+                        nome_video     : video.nome_video,
+                        status         : video.status
+                    }))
 
-            if (!filtros.finalizado) {
-                const whereClause: any = { ...dados };
-
-                if (filtros.id_usuario) {
-                  whereClause.mv_video = {
-                    none: {
-                      AND: [
-                        { id_usuario: filtros.id_usuario },
-                      ],
-                    },
-                  };
                 }
 
-                const buscavideo = await prismaClient.video.findMany({
-                    where: whereClause,
-                    include: {
-                        sistema: {
-                            select: {
-                                nome_sistema: true
-                            }
+                if (!filtros.finalizado) {
+                    const whereClause: any = { ...dados };
+
+                    if (filtros.id_usuario) {
+                    whereClause.mv_video = {
+                        none: {
+                        AND: [
+                            { id_usuario: filtros.id_usuario },
+                        ],
                         },
-                        modulo :{
-                            select: {
-                                nome_modulo: true
-                            }
-                        },
-                        submodulo:{
-                            select: {
-                                nome_submodulo: true
-                            }
-                        }
-    
+                    };
                     }
-                })
 
-                return buscavideo.map( (video) => ({
-                    id_video       : video.id_video,
-                    id_sistema     : video.id_sistema,
-                    nome_sistema   : video.sistema?.nome_sistema,
-                    id_modulo      : video.id_modulo,
-                    nome_modulo    : video.modulo?.nome_modulo,
-                    id_submodulo   : video.id_submodulo,
-                    nome_submodulo : video.submodulo?.nome_submodulo,
-                    nome_video     : video.nome_video,
-                    status         : video.status
-                }))
+                    const buscavideo = await prismaClient.video.findMany({
+                        where: whereClause,
+                        include: {
+                            sistema: {
+                                select: {
+                                    nome_sistema: true
+                                }
+                            },
+                            modulo :{
+                                select: {
+                                    nome_modulo: true
+                                }
+                            },
+                            submodulo:{
+                                select: {
+                                    nome_submodulo: true
+                                }
+                            }
+        
+                        }
+                    })
 
-            }
+                    return buscavideo.map( (video) => ({
+                        id_video       : video.id_video,
+                        id_sistema     : video.id_sistema,
+                        nome_sistema   : video.sistema?.nome_sistema,
+                        id_modulo      : video.id_modulo,
+                        nome_modulo    : video.modulo?.nome_modulo,
+                        id_submodulo   : video.id_submodulo,
+                        nome_submodulo : video.submodulo?.nome_submodulo,
+                        nome_video     : video.nome_video,
+                        status         : video.status
+                    }))
+
+                }
+
+                if (filtros.finalizado) {
+                    const whereClause: any = { ...dados };
+
+                    if (filtros.id_usuario) {
+                    whereClause.mv_video = {
+                        some: {
+                        AND: [
+                            { id_usuario: filtros.id_usuario },
+                        ],
+                        },
+                    };
+                    }
+
+                    const buscavideo = await prismaClient.video.findMany({
+                        where: whereClause,
+                        include: {
+                            sistema: {
+                                select: {
+                                    nome_sistema: true
+                                }
+                            },
+                            modulo :{
+                                select: {
+                                    nome_modulo: true
+                                }
+                            },
+                            submodulo:{
+                                select: {
+                                    nome_submodulo: true
+                                }
+                            }
+        
+                        }
+                    })
+
+                    return buscavideo.map( (video) => ({
+                        id_video       : video.id_video,
+                        id_sistema     : video.id_sistema,
+                        nome_sistema   : video.sistema?.nome_sistema,
+                        id_modulo      : video.id_modulo,
+                        nome_modulo    : video.modulo?.nome_modulo,
+                        id_submodulo   : video.id_submodulo,
+                        nome_submodulo : video.submodulo?.nome_submodulo,
+                        nome_video     : video.nome_video,
+                        status         : video.status
+                    }))
+
+                }
+        }
+
         } catch (error) {
             throw new Error('Erro no serviço de listar video')
         }
+    
     }
 }
 

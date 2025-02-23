@@ -171,6 +171,7 @@ model Video {
   link          String
   observacao    String?
   order         Int?
+  capa          String?
   
   data_criacao  DateTime      @default(now())
   data_inativo  DateTime?
