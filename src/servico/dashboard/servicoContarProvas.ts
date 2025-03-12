@@ -18,7 +18,7 @@ class ServicoContarProvas{
 
     const somaNotas = Notas.reduce((total, item) => total + (item.nota || 0), 0);
 
-    const media = QtdProvas > 0 ? somaNotas / QtdProvas : 0;
+    const media = QtdProvas > 0 ? somaNotas / QtdProvas : undefined;
 
     return media;
     }
