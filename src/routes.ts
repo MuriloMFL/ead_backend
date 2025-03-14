@@ -95,6 +95,8 @@ import { ControleContarQtdSubModulo } from './controle/dashboard/controleContarQ
 import { ControleContarQtdAulas } from './controle/dashboard/controleContarQtdAulas';
 import { ControleContarProvas } from './controle/dashboard/controleContarProvas';
 import { ControleVerificarMvVideo } from './controle/video_mv/controleVerificarMvVideo';
+import { ControleContarVideos } from './controle/dashboard/controleContarVideos';
+import { ControleContarSistemas } from './controle/dashboard/controleContarSistemas';
 
 const router = Router();
 
@@ -198,5 +200,7 @@ router.get('/contarmodulos',  new ControleContarQtdModulo().handle)
 router.get('/contarsubmodulos',  new ControleContarQtdSubModulo().handle)
 router.get('/contaraulas',  new ControleContarQtdAulas().handle)
 router.get('/contarprovas',  new ControleContarProvas().handle)
+router.get('/contarvideos',  new ControleContarVideos().handle)
+router.get('/contarsistemas',  new ControleContarSistemas().handle)
 
 export { router };
