@@ -5,7 +5,7 @@ class ServicoAtualizarRelease {
         id_release, numero_release, versao_gestores, versao_sincdata, versao_gestorpdv, versao_balcao, finalizado
     }){
         try {
-            console.log(finalizado)
+
             const release = await prismaClient.release.update({
                 where: {
                     id_release: Number(id_release)

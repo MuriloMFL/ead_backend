@@ -5,7 +5,6 @@ class ControleListarVideo {
     async handle(req: Request, res: Response){
         const {id_video, id_sistema, id_modulo, id_submodulo, nome_video, status, finalizado, id_usuario} = req.query
 
-        console.log(finalizado)
         const filtros = {
             id_video     : id_video,
             id_sistema   : id_sistema,

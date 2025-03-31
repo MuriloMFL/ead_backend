@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from "express";
 class ControleListarFranquia{
     async handle(req: Request, res: Response, next: NextFunction){
         const { status, nome, id_franquia } = req.query;
-        console.log(status)
+
         const filtros = {
             status: status === 'true' ? true : status === 'false' ? false : undefined,
             nome: nome ? String(nome) : undefined,

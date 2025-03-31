@@ -7,7 +7,6 @@ class ControleCriarMvQuestao {
             id_sistema, id_submodulo, id_modulo, id_aula, id_prova, id_usuario, id_franquia, id_questao, alternativa_marcada
         } = req.body
         
-        console.log(id_sistema, id_submodulo, id_modulo, id_aula, id_prova, id_usuario, id_franquia, id_questao, alternativa_marcada)
         const servicoCriarMvQuestao = new ServicoCriarMvQuestao();
 
         const questao_mv = await servicoCriarMvQuestao.executar({
